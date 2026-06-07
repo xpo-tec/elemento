@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Transmisión privada | Elemento</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body class="event-page">
+  <main class="page-shell">
+    <header class="site-header">
+      <img
+        src="assets/img/elemento-logo-red.png"
+        alt="Elemento"
+        class="brand-logo"
+      />
+      <span class="event-label">Transmisión privada</span>
+    </header>
+
+    <section class="event-hero">
+      <div>
+        <p class="eyebrow">En vivo | Acceso aprobado</p>
+        <h1>Venezuela 2026</h1>
+        <p class="hero-subtitle">
+          Riesgos y Oportunidades del Nuevo Escenario
+        </p>
+      </div>
+    </section>
+
+    <section class="live-layout">
+      <div class="video-area">
+        <div class="video-wrapper">
+          <!-- Replace this iframe with the final Vimeo embed -->
+          <iframe
+            src="https://player.vimeo.com/video/000000000"
+            frameborder="0"
+            allow="autoplay; fullscreen; picture-in-picture"
+            allowfullscreen
+            title="Transmisión privada Elemento"
+          ></iframe>
+        </div>
+
+        <div class="event-note">
+          <p>
+            Si la transmisión aún no inicia, espere unos minutos y actualice la
+            página. Le recomendamos mantener esta ventana abierta durante el
+            evento.
+          </p>
+        </div>
+      </div>
+
+      <aside class="qa-card">
+        <h2>Preguntas para el panel</h2>
+        <p>
+          Escriba su pregunta o comentario. El equipo de moderación revisará los
+          mensajes en tiempo real.
+        </p>
+
+        <form id="questionForm" class="qa-form">
+          <label for="attendeeName">Nombre</label>
+          <input
+            id="attendeeName"
+            name="attendeeName"
+            type="text"
+            placeholder="Nombre y apellido"
+            required
+          />
+
+          <label for="attendeeQuestion">Pregunta o comentario</label>
+          <textarea
+            id="attendeeQuestion"
+            name="attendeeQuestion"
+            rows="6"
+            placeholder="Escriba aquí su pregunta..."
+            required
+          ></textarea>
+
+          <button type="submit" class="button button-primary">
+            Enviar pregunta
+          </button>
+        </form>
+
+        <p id="questionMessage" class="form-message"></p>
+      </aside>
+    </section>
+
+    <footer class="site-footer">
+      <p>Evento privado de Elemento.</p>
+      <p class="powered">Plataforma técnica operada por XPO.</p>
+    </footer>
+  </main>
+
+  <script src="assets/js/event.js"></script>
+</body>
+</html>
