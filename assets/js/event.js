@@ -6,59 +6,65 @@ if (!hasAccess) {
 
 const questionForm = document.getElementById("questionForm");
 const questionMessage = document.getElementById("questionMessage");
+const attendeeNameInput = document.getElementById("attendeeName");
 
-// Pending: replace with Apps Script Web App URL.
-const questionEndpointUrl = "";
+const apiEndpointUrl =
+  "https://script.google.com/macros/s/AKfycbzaNaaYieTrDplI0FIoHXP-JF1KHcEpJfWt2NySk7Dt97ZXlO7R8IBZtF7S5iEK7Lt9/exec";
+
+const storedName = sessionStorage.getItem("elementoAccessName") || "";
+const accessCode = sessionStorage.getItem("elementoAccessCode") || "";
+
+if (storedName && attendeeNameInput) {
+  attendeeNameInput.value = storedName;
+}
 
 questionForm.addEventListener("submit", async function (event) {
   event.preventDefault();
 
-  const attendeeName = document.getElementById("attendeeName").value.trim();
-  const attendeeQuestion = document.getElementById("attendeeQuestion").value.trim();
-  const accessCode = sessionStorage.getItem("elementoAccessCode") || "";
+  const attendeeName = attendeeNameInput.value.trim();
+  const attendeeQuestion = document
+    .getElementById("attendeeQuestion")
+    .value.trim();
 
   if (!attendeeName || !attendeeQuestion) {
     showQuestionMessage("Complete su nombre y su pregunta.", "error");
     return;
   }
 
-  if (!questionEndpointUrl) {
-    console.log({
-      attendeeName,
-      attendeeQuestion,
-      accessCode,
-      timestamp: new Date().toISOString()
-    });
-
-    showQuestionMessage(
-      "Pregunta registrada en modo prueba. Falta conectar el formulario a Google Sheets.",
-      "success"
-    );
-
-    questionForm.reset();
-    return;
-  }
+  showQuestionMessage("Enviando pregunta...", "success");
 
   try {
-    const response = await fetch(questionEndpointUrl, {
+    const response = await fetch(apiEndpointUrl, {
       method: "POST",
-      mode: "no-cors",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "text/plain;charset=utf-8"
       },
       body: JSON.stringify({
-        attendeeName,
-        attendeeQuestion,
-        accessCode,
-        timestamp: new Date().toISOString()
+        action: "submitQuestion",
+        name: attendeeName,
+        code: accessCode,
+        question: attendeeQuestion
       })
     });
 
+    const result = await response.json();
+
+    if (!result.success) {
+      showQuestionMessage(
+        "No se pudo enviar la pregunta. Intente nuevamente.",
+        "error"
+      );
+      return;
+    }
+
     showQuestionMessage("Pregunta enviada correctamente.", "success");
-    questionForm.reset();
+    document.getElementById("attendeeQuestion").value = "";
   } catch (error) {
     console.error(error);
-    showQuestionMessage("No se pudo enviar la pregunta. Intente nuevamente.", "error");
+    showQuestionMessage(
+      "No se pudo enviar la pregunta. Intente nuevamente.",
+      "error"
+    );
   }
 });
 

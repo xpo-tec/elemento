@@ -74,7 +74,7 @@ img {
 
 .hero {
   display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
+  grid-template-columns: minmax(0, 1.18fr) minmax(320px, 0.82fr);
   min-height: 580px;
   background: var(--color-dark);
 }
@@ -111,12 +111,12 @@ p {
 }
 
 h1 {
-  max-width: 900px;
+  max-width: 760px;
   margin-bottom: 24px;
   font-family: var(--font-heading);
-  font-size: clamp(3.2rem, 6vw, 5.7rem);
-  line-height: 1.02;
-  letter-spacing: -0.055em;
+  font-size: clamp(3rem, 5vw, 4.9rem);
+  line-height: 1.05;
+  letter-spacing: -0.045em;
   font-weight: 700;
   color: var(--color-white);
 }
