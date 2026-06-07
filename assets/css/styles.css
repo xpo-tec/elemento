@@ -415,10 +415,10 @@ textarea:focus {
 
 .live-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1.32fr) minmax(320px, 0.68fr);
-  gap: 32px;
+  grid-template-columns: minmax(0, 1.65fr) minmax(300px, 0.55fr);
+  gap: 28px;
   align-items: start;
-  padding: 56px max(28px, calc((100vw - var(--site-width)) / 2)) 76px;
+  padding: 56px max(24px, calc((100vw - 1180px) / 2)) 76px;
   background: var(--color-white);
 }
 
